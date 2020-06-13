@@ -80,8 +80,6 @@ def pred_image(mtcnn, resnet, device, model):
     predictions = model.predict(test_images[:])
     resProb = np.amax(predictions, axis=1)
     res = np.argmax(predictions, axis=1)
-    # print(res)
-    # print(resProb)
     corr_count = 0
 
     for i in range(len(res)):

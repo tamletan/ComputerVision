@@ -55,8 +55,8 @@ def sys_init():
 
 	# Load the model's saved weights.
 	model.load_weights('model.h5')
-	live_model = load_model('liveness.model')
-	le = pickle.loads(open("le.pickle", "rb").read())
+	live_model = load_model('liveness/liveness.model')
+	le = pickle.loads(open('liveness/le.pickle', 'rb').read())
 
 	return mtcnn,resnet,device,model,live_model,le
 
