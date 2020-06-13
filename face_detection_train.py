@@ -12,6 +12,7 @@ import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.utils import to_categorical
+import pandas as pd
 
 dataPath = 'data'  #create dataset directory
 dir_name =[]
@@ -33,7 +34,7 @@ def sys_init():
 	dir_name = [n for n in os.listdir() if os.path.isdir(n) and not n.startswith('.')]
 	print('Running on device: {}'.format(device))
 
-	#Feature extraction:
+	# Feature extraction:
 	mtcnn = MTCNN(image_size=160, margin=0, min_face_size=40,
 	    thresholds=[0.6, 0.7, 0.7], factor=0.709)
 	#Crop face from image:
@@ -90,9 +91,14 @@ def training_model(mtcnn, resnet, device, model):
 	    epochs=8,
 	    batch_size=32,
 	)
+
 	os.chdir('..')
 	model.save_weights('model.h5')    
 
 if __name__ == '__main__':
 	mtcnn, resnet, device, model = sys_init()
 	training_model(mtcnn,resnet,device, model)
+	
+	a = np.zeros(len(dir_name), dtype=int).tolist()
+	df = pd.DataFrame(data={"Name": dir_name, "Attendance": a})
+	df.to_csv("./students.csv", sep=',',index=False)
