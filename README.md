@@ -30,9 +30,9 @@ This command will excute file <code>train.py</code>. After excuting, we will hav
 - python demo.py<br> 
 This command will excute file <code>train.py</code>. After excuting, we will have <code>model</code> about liveness. You can check your data is correct or not.
 
-2. After create <code>liveness</code> model. You should back to previous folder and try this:<br>
-First of all, you should prepare dataset for each person who want to regconition. You need to prepare 15-30 pictures for each person. Create <code>students.csv</code> contains students list.
-After preparing, try this to run program below:
+2. After create <code>liveness</code> model. You should back to previous folder and do these things below:<br>
+First of all, you have to prepare dataset for each person who want to regconition. You need to prepare 15-30 pictures for each person. Create <code>students.csv</code> contains students list.
+After preparing, try to do some guides below to run program:
 
 <b>Step 1</b>
 - python face_detection_train.py<br>
