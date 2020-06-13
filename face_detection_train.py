@@ -59,7 +59,6 @@ def training_model(mtcnn, resnet, device, model):
 
 		for path in images_list:
 			path = person+"/"+path
-			# print(path)
 			im = cv2.imread(path)
 			if isinstance(im, type(None)):
 				print('[Error]: ',path)
@@ -68,9 +67,7 @@ def training_model(mtcnn, resnet, device, model):
 			if isinstance(im_crop, type(None)):
 				print('[Error]: ',path)
 				continue
-			# print(type(im_crop))
 			im_crop = im_crop.to(device)
-			# print(type(im_crop))
 			im_extract = resnet(im_crop.unsqueeze(0))
 			im_extract = im_extract.detach().cpu().numpy()
 			im_extract = im_extract.reshape(512)

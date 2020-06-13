@@ -66,7 +66,6 @@ def recognize_faces(mtcnn, resnet, device, model) :
             break
 
         boxes, _ = mtcnn.detect(image)
-        # print("\rTime detectbox: {:.2f}".format((time.time() - start_time)))
 
         if not isinstance(boxes, type(None)):
             for (x, y, w, h) in boxes:
@@ -86,7 +85,6 @@ def recognize_faces(mtcnn, resnet, device, model) :
                 im_crop = im_crop.to(device)
 
                 im_extract = resnet(im_crop.unsqueeze(0))
-                # print("\rTime resnet: {:.2f}".format((time.time() - start_time)))
 
                 im_extract = im_extract.detach().cpu().numpy()
                 im_extract = im_extract.reshape(512)
@@ -106,8 +104,6 @@ def recognize_faces(mtcnn, resnet, device, model) :
             start_time = time.time()
             continue
 
-        # cv2.imshow("Face Recognizer", image)
-        # print("\rTime all: {:.2f}".format((time.time() - start_time)))
         print("\rFPS: {:.2f}".format(1 / (time.time() - start_time)), end='')
         start_time = time.time()
 
