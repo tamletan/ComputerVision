@@ -19,7 +19,7 @@ Open folder <code>liveness</code>, you put your videos which recorded your faces
 
 <b>Step 1</b>
 - python gather.py -t real
-- python gather.py -t fake
+- python gather.py -t fake<br>
 These command will excute file <code>gather.py</code>. After excuting, we will have <code>dataset</code> about liveness.
 
 <b>Step 2</b>
