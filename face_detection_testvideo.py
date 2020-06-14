@@ -15,7 +15,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.utils import to_categorical
 
-thread_hold = 0.6
+thread_hold = 0.5
 dataPath = 'data'
 dir_name = []
 
@@ -94,9 +94,9 @@ def recognize_faces(mtcnn, resnet, device, model) :
                 res = np.argmax(predictions)
 
                 if(resProb >= thread_hold):
-                    cv2.putText(image, '{0}: {1:.1%}'.format(dir_name[res], resProb), (x+5,y-5), font, 1, (0,0,255), 2)
+                    cv2.putText(image, '{0}: {1:.1%}'.format(dir_name[res], resProb), (x+5,y-5), font, 1, (0,255,0), 2)
                 else:
-                    cv2.putText(image, "Unknown", (x+5,y-5), font, 1, (0,0,255), 2)
+                    cv2.putText(image, "Unknown", (x+5,y-5), font, 1, (255,0,0), 2)
 
             cv2.imshow("Face Recognizer", image)
         else:
