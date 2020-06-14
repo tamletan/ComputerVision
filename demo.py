@@ -62,6 +62,8 @@ def sys_init():
 
 def recognize_faces(mtcnn, resnet, device, model, live_model, le) :
 	cap = cv2.VideoCapture(0)
+	cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+	cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 	font = cv2.FONT_HERSHEY_SIMPLEX
 
 	start_time = time.time()
@@ -88,7 +90,7 @@ def recognize_faces(mtcnn, resnet, device, model, live_model, le) :
 					continue
 				if not pred_liveness(im_crop, live_model, le):
 					cv2.rectangle(image, (x, y), (w,h), (255, 0, 0), 2)
-					cv2.putText(image, "Fake", (x+5,y-5), font, 1, (0,0,255), 2)
+					cv2.putText(image, "Spoofing", (x+5,y-5), font, 1, (255,0,0), 2)
 					continue
 				cv2.rectangle(image, (x, y), (w,h), (0, 255, 0), 2)
 				im_crop = ToTensor()(im_crop)
@@ -107,7 +109,7 @@ def recognize_faces(mtcnn, resnet, device, model, live_model, le) :
 					cv2.putText(image, '{0}: {1:.1%}'.format(dir_name[res], resProb), (x+5,y-5), font, 1, (0,0,255), 2)
 					attendance(dir_name[res])
 				else:
-					cv2.putText(image, "Unknown", (x+5,y-5), font, 1, (0,0,255), 2)
+					cv2.putText(image, "Unknown", (x+5,y-5), font, 1, (255,0,0), 2)
 
 			cv2.imshow("Face Recognizer", image)
 		else:
